@@ -20,4 +20,4 @@ workflows:
        - one
        - two
             requires:
-               - hold
+               - build
