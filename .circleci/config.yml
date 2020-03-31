@@ -19,5 +19,4 @@ workflows:
      jobs:
        - one
        - two
-            requires:
-               - build
+         
