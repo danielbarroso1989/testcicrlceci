@@ -1,28 +1,26 @@
 version: 2
 jobs:
-   one:
+   sanbox:
      type: approval
      docker:
        - image: circleci/ruby:2.4.1
      steps:
        - checkout
        - run: echo "A first hello"
-   two:
+   staging:
      type: approval
      docker:
        - image: circleci/ruby:2.4.1
      steps:
        - checkout
        - run: echo "A more familiar hi".
-     requires:
-      one
 
       
 workflows:
    version: 2
    one_and_two:
      jobs:
-       - one
-       - two
+       - sanbox
+       - staging
    
    
