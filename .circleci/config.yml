@@ -1,6 +1,6 @@
 version: 2
 jobs:
-   sanbox:
+   sandbox:
      type: approval
      docker:
        - image: circleci/ruby:2.4.1
