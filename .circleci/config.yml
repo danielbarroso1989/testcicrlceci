@@ -18,8 +18,8 @@ jobs:
     hold:
      type: approval
      requires:
-      sandbox      
-      staging
+      - sandbox      
+      - staging
       
 workflows:
    version: 2
