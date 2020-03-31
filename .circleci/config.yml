@@ -19,5 +19,5 @@ workflows:
      jobs:
        - one
        - two
-          requires:
-            -hold
+            requires:
+               - hold
