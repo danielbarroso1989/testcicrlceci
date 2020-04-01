@@ -27,9 +27,9 @@ workflows:
     jobs:
       - testing
       - sandbox:
-        type: approval
-        requires:
-          - testing
+          type: approval
+          requires:
+            - testing
       - amldemo:
           type: approval
           requires:
