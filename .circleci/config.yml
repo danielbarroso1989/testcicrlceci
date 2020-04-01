@@ -8,6 +8,7 @@ jobs:
         - run: echo "testing"
 
   sandbox:
+
       docker:
        - image: circleci/node:4.8.2
       steps:
@@ -21,17 +22,28 @@ jobs:
         - checkout
         - run: echo "run aml demo"
 
+  staging:
+      docker:
+       - image: circleci/node:4.8.2
+      steps:
+        - checkout
+        - run: echo "run staging"
+
 workflows:
   version: 2
   deploy_plugin_test:
     jobs:
       - testing
-      - sandbox:
-          type: approval
-          requires:
-            - testing
       - amldemo:
           type: approval
           requires:
-            - sandbox
-      
+            - testing
+      - sandbox:
+          type: approval
+          requires:
+            - amldemo
+      - staging:
+          filters:
+            branches:
+              only:
+                - master
