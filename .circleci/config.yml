@@ -39,21 +39,25 @@ workflows:
     jobs:
       - testing
       - amldemo:
+          branches:
+            ignore:
+                - master
           type: approval
           requires:
             - testing
       - sandbox:
+          branches:
+            ignore:
+                - master
           type: approval
           requires:
             - amldemo
       - staging:
           requires:
-            - sandbox
+            - testing
           filters:
             branches:
               only:
                 - master
           
         
-      
-      
