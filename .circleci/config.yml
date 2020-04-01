@@ -2,15 +2,29 @@ version: 2
 jobs:
   testing:
     docker:
-       - image: circleci/node:4.8.2
+       - image: alekzonder/puppeteer:latest
     steps:
         - checkout
-        - run: echo "testing"
+        - run: export CSS_URL=https://cd1st.identitymind.com/idm.min.css
+        - run: export DV_CHECK=https://pluginst.identitymind.com/api/dv
+        - run: export INIT_API_URL=https://pluginst.identitymind.com/api/init
+        - run: export LOADING_WHEEL=https://cd1st.identitymind.com/spinner.gif
+        - run: export NEW_RELIC_URL=https://cd1st.identitymind.com/newrelic-stg.min.js
+        - run: export PLUGIN_BASE_URL=https://cd1st.identitymind.com/
+        - run: export ROUTER_API_URL=https://pluginst.identitymind.com/api/router
+        - run: export SMS_API_URL=https://pluginst.identitymind.com/api/sms
+        - run: export SOCKET_BASE_URL=https://kyc-plugin-socketio-staging.herokuapp.com/
+        - run: export FILES_API_URL=https://pluginst.identitymind.com/api/files
+        - run: export URL_WH_SENTRY=/wh/sentry_messange/
+        - run: npm install
+        - run: npm run test
+        - store_artifacts:
+            path: tests.xml
 
   sandbox:
 
       docker:
-       - image: circleci/node:4.8.2
+       - image: alekzonder/puppeteer:latest
       steps:
         - checkout
         - run: echo "run staging"
@@ -21,7 +35,7 @@ jobs:
   
   amldemo:
       docker:
-       - image: circleci/node:4.8.2
+       - image: alekzonder/puppeteer:latest
       steps:
         - checkout
         - run: echo "run aml demo"
@@ -49,7 +63,8 @@ workflows:
       - sandbox:
           filters:
             branches:
-                - master
+                only:
+                  - master
           type: approval
           requires:
             - testing
