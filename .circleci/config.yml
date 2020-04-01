@@ -49,14 +49,13 @@ workflows:
       - sandbox:
           filters:
             branches:
-                ignore:
-                    - master
+                - master
           type: approval
           requires:
-            - amldemo
+            - testing
       - staging:
           requires:
-            - testing
+            - sandbox
           filters:
             branches:
               only:
