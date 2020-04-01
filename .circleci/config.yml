@@ -32,6 +32,8 @@ workflows:
             - testing
       - amldemo:
           type: approval
+          branches:
+            only:
+              - master
           requires:
             - sandbox
-      
