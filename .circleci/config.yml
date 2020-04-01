@@ -26,8 +26,12 @@ workflows:
   deploy_plugin_test:
     jobs:
       - testing
-      - sandbox
+      - sandbox:
+        type: approval
+        requires:
+          - testing
       - amldemo:
+          type: approval
           requires:
             - sandbox
       
