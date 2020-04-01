@@ -23,7 +23,7 @@ jobs:
 workflows:
   version: 2
   deploy_plugin_test:
-  jobs:
-    - testing
-    - sandbox
-    - amldemo
+    jobs:
+      - testing
+      - sandbox
+      - amldemo
