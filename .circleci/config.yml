@@ -9,6 +9,8 @@ jobs:
 
   sandbox:
       type: approval
+      requires:
+        - testing
       docker:
        - image: circleci/node:4.8.2
       steps:
@@ -17,6 +19,8 @@ jobs:
   
   amldemo:
       type: approval
+      requires:
+        - sandbox
       docker:
        - image: circleci/node:4.8.2
       steps:
@@ -29,3 +33,4 @@ workflows:
       - testing
       - sandbox
       - amldemo
+      
