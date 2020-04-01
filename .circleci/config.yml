@@ -8,6 +8,7 @@ jobs:
         - run: echo "testing"
 
   sandbox:
+      type: approval
       docker:
        - image: circleci/node:4.8.2
       steps:
@@ -15,6 +16,7 @@ jobs:
         - run: echo "run staging"
   
   amldemo:
+      type: approval
       docker:
        - image: circleci/node:4.8.2
       steps:
