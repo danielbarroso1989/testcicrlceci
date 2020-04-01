@@ -13,7 +13,6 @@ jobs:
       steps:
         - checkout
         - run: echo "run staging"
-  
   amldemo:
       docker:
        - image: circleci/node:4.8.2
