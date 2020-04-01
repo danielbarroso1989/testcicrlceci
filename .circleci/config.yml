@@ -43,7 +43,10 @@ workflows:
           requires:
             - amldemo
       - staging:
+          requires:
+            - sandbox
           filters:
             branches:
               only:
                 - master
+          
