@@ -1,36 +1,11 @@
-version: 2
-jobs:
-  testing:
-    docker:
-       - image: circleci/node:4.8.2
-    steps:
-        - checkout
-        - run: echo "testing"
-
-  sandbox:
-      type: approval
-      requires:
-        - testing
-      docker:
-       - image: circleci/node:4.8.2
-      steps:
-        - checkout
-        - run: echo "run staging"
-  
-  amldemo:
-      type: approval
-      requires:
-        - sandbox
-      docker:
-       - image: circleci/node:4.8.2
-      steps:
-        - checkout
-        - run: echo "run aml demo"
-workflows:
   version: 2
-  deploy_plugin_test:
+  release-branch-workflow:
     jobs:
-      - testing
-      - sandbox
-      - amldemo
-      
+      - build
+      - request-testing:
+          type: approval
+          requires:
+            - build
+      - deploy-aws:
+          requires:
+            - request-testing
